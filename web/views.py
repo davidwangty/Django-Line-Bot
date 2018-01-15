@@ -3,6 +3,7 @@ from datetime import datetime
 
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
 from django.http import (
     HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 )
@@ -23,7 +24,7 @@ ChannelSecret = os.environ['ChannelSecret']
 
 parser = WebhookParser(ChannelSecret)
 
-
+@csrf_exempt
 @require_http_methods(['POST'])
 def callback(request):
     body = request.body.decode('utf-8')
