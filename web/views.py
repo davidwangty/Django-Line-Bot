@@ -41,7 +41,7 @@ def callback(request):
             message = event.message
             if message.type == 'text':
                 # Reply what bot recieve
-                line_api.sendTextMessage(event.replyToken, message.text)
+                line_api.replyTextMessage(event.replyToken, message.text)
         elif event.type == 'follow':
             pass
         elif event.type == 'join':
