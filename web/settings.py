@@ -50,6 +50,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'web.urls'
+APPEND_SLASH = False
 
 TEMPLATES = [
     {
