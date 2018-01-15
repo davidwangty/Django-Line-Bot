@@ -20,5 +20,5 @@ from web import views as web_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('callback', web_views.callback)
+    path('callback/', web_views.callback)
 ]
