@@ -37,11 +37,12 @@ def callback(request):
         return HttpResponseBadRequest()
 
     for event in events:
+        print('事件: ', type(event), '\n', event)
         if event.type == 'message':
             message = event.message
             if message.type == 'text':
                 # Reply what bot recieve
-                line_api.replyTextMessage(event.replyToken, message.text)
+                line_api.replyTextMessage(event.replyToken, message.text+'  有聽到哦～')
         elif event.type == 'follow':
             pass
         elif event.type == 'join':
