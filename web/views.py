@@ -24,6 +24,7 @@ ChannelSecret = os.environ['ChannelSecret']
 
 parser = WebhookParser(ChannelSecret)
 
+
 @csrf_exempt
 @require_http_methods(['POST'])
 def callback(request):
