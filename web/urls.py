@@ -21,4 +21,4 @@ from web import views as web_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('callback/', web_views.callback)
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
