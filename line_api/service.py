@@ -1,19 +1,10 @@
 import os
-from datetime import datetime
 
-from django.shortcuts import render
-from django.http import (
-    HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
-)
 from linebot import (
-    LineBotApi, WebhookParser
-)
-from linebot.exceptions import (
-    InvalidSignatureError, LineBotApiError
+    LineBotApi
 )
 from linebot.models import (
-    MessageEvent, JoinEvent, TextMessage, TextSendMessage, ImageSendMessage,
-    responses
+    TextSendMessage
 )
 
 AccessToken = os.environ['ChannelAccessToken']
@@ -21,9 +12,9 @@ AccessToken = os.environ['ChannelAccessToken']
 line_bot_api = LineBotApi(AccessToken)
 
 
-def pushTextMessage(id, message):
+def pushTextMessage(line_id, message):
     line_bot_api.push_message(
-        id, TextSendMessage(text=message)
+        line_id, TextSendMessage(text=message)
     )
 
 

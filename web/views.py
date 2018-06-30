@@ -1,24 +1,21 @@
+# -*- coding: utf-8 -*-
+# 設定檔案編碼
 import os
-from datetime import datetime
 
-from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.http import (
     HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 )
 from linebot import (
-    LineBotApi, WebhookParser
+    WebhookParser
 )
 from linebot.exceptions import (
     InvalidSignatureError, LineBotApiError
 )
-from linebot.models import (
-    MessageEvent, JoinEvent, TextMessage, TextSendMessage, ImageSendMessage,
-    responses
-)
 
-from api import views as line_api
+from line_api import service as line_service
+from group import views as group_api
 
 ChannelSecret = os.environ['ChannelSecret']
 
@@ -44,7 +41,11 @@ def callback(request):
             message = event.message
             if message.type == 'text':
                 # Reply what bot recieve
-                line_api.replyTextMessage(event.reply_token, message.text+'  有聽到哦～')
+                line_service.replyTextMessage(
+                    event.reply_token,
+                    message.text+'  有聽到哦～'
+                )
+
         elif event.type == 'follow':
             pass
         elif event.type == 'join':
